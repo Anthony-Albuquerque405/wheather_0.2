@@ -15,15 +15,15 @@ function hashCode(str: string): number {
 // Retorna dados meteorológicos simulados realistas com base no nome da cidade
 function generateMockData(city: string, lang: string = "pt") {
   const hash = hashCode(city.toLowerCase().trim());
-  
+
   // Determinar clima básico baseado no hash para variedade
   const climateTypes = ["sunny", "cloudy", "rainy", "windy", "stormy"];
   const climate = climateTypes[hash % climateTypes.length];
-  
+
   // Latitude e longitude realistas aproximadas
   const lat = ((hash % 180) - 90) * 0.9;
   const lon = ((hash % 360) - 180) * 0.9;
-  
+
   // Temperatura base baseada no hash (de -10°C a 38°C)
   let baseTemp = 15 + (hash % 20); // padrão entre 15°C e 35°C
   if (city.toLowerCase().includes("siberia") || city.toLowerCase().includes("moscow") || city.toLowerCase().includes("canada")) {
@@ -31,25 +31,25 @@ function generateMockData(city: string, lang: string = "pt") {
   } else if (city.toLowerCase().includes("sahara") || city.toLowerCase().includes("rio de janeiro") || city.toLowerCase().includes("nordeste") || city.toLowerCase().includes("belo jardim")) {
     baseTemp = 26 + (hash % 10);
   }
-  
+
   const tempMin = Math.round((baseTemp - 4 - (hash % 4)) * 10) / 10;
   const tempMax = Math.round((baseTemp + 5 + (hash % 5)) * 10) / 10;
   const currentTemp = Math.round(((tempMin + tempMax) / 2) * 10) / 10;
-  
+
   // Humidade (30% a 95%)
   let humidity = 40 + (hash % 50);
   if (climate === "rainy" || climate === "stormy") humidity = 80 + (hash % 15);
   if (climate === "sunny") humidity = 30 + (hash % 20);
-  
+
   // Vento (5 km/h a 75 km/h)
   let windSpeed = 5 + (hash % 30);
   if (climate === "windy" || climate === "stormy") windSpeed = 45 + (hash % 30);
-  
+
   // Condições climáticas
   let conditionText = lang === "en" ? "Partly Cloudy" : "Parcialmente Nublado";
   let conditionIcon = "cloudy";
   let alert = "";
-  
+
   switch (climate) {
     case "sunny":
       conditionText = lang === "en" ? "Sunny / Clear Sky" : "Ensolarado / Céu Limpo";
@@ -75,38 +75,38 @@ function generateMockData(city: string, lang: string = "pt") {
       alert = lang === "en" ? "Notice of short-duration storm in the region." : "Aviso de tempestade de curta duração na região.";
       break;
   }
-  
+
   // Fase da lua (simulada)
-  const moonPhases = lang === "en" 
-    ? ["New", "Waxing Crescent", "Full", "Waning Gibbous"] 
+  const moonPhases = lang === "en"
+    ? ["New", "Waxing Crescent", "Full", "Waning Gibbous"]
     : ["Nova", "Crescente", "Cheia", "Minguante"];
   const moonPhase = moonPhases[hash % moonPhases.length];
-  
+
   // Previsão Horária (24 horas, em blocos de 3h, começando às 18:00 até 15:00 do dia seguinte)
   const hourly = [];
   const hours = [18, 21, 0, 3, 6, 9, 12, 15];
   for (let i = 0; i < hours.length; i++) {
     const hr = hours[i];
     const hrStr = `${hr.toString().padStart(2, "0")}:00`;
-    
+
     // Temperatura oscila ao longo do dia (mais fria de madrugada, mais quente à tarde)
     let tempDiff = 0;
     if (hr >= 0 && hr <= 6) tempDiff = -3 - (hash % 3); // madrugada
     else if (hr >= 12 && hr <= 15) tempDiff = 4 + (hash % 3); // tarde
     const hTemp = Math.round((currentTemp + tempDiff) * 10) / 10;
-    
+
     // Percentuais de precipitação (10% a 95%)
     let hPop = 10 + ((hash + i * 17) % 30);
     if (climate === "rainy" || climate === "stormy") {
       hPop = 65 + ((hash + i * 23) % 30);
     }
-    
+
     // Ícone da hora
     let hIcon = conditionIcon;
     if (hr >= 18 || hr <= 5) {
       hIcon = climate === "sunny" ? "clear-night" : "cloudy-night";
     }
-    
+
     hourly.push({
       time: hrStr,
       temp: hTemp,
@@ -114,19 +114,19 @@ function generateMockData(city: string, lang: string = "pt") {
       icon: hIcon,
     });
   }
-  
+
   // Previsão Diária (7 dias consecutivos)
   const daysPT = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
   const daysEN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const days = lang === "en" ? daysEN : daysPT;
   const todayIndex = new Date().getDay();
   const daily = [];
-  
+
   for (let i = 0; i < 7; i++) {
     const dayName = days[(todayIndex + i) % 7];
     const dTempMin = Math.round((tempMin + ((hash + i * 13) % 5) - 2) * 10) / 10;
     const dTempMax = Math.round((tempMax + ((hash + i * 9) % 6) - 2) * 10) / 10;
-    
+
     // Escolher ícone aleatório consistente para o dia
     const dClimateIndex = (hash + i * 11) % climateTypes.length;
     const dClimate = climateTypes[dClimateIndex];
@@ -134,7 +134,7 @@ function generateMockData(city: string, lang: string = "pt") {
     if (dClimate === "cloudy") dIcon = "cloudy";
     if (dClimate === "rainy" || dClimate === "stormy") dIcon = "rainy";
     if (dClimate === "windy") dIcon = "windy";
-    
+
     daily.push({
       day: dayName,
       date: `${21 + i}/05`, // simulando dia do calendário
@@ -143,7 +143,7 @@ function generateMockData(city: string, lang: string = "pt") {
       icon: dIcon,
     });
   }
-  
+
   // Dados de cidades vizinhas para o mapa interativo
   const suffixNorth = lang === "en" ? "North" : "Norte";
   const suffixSouth = lang === "en" ? "South" : "Sul";
@@ -155,7 +155,7 @@ function generateMockData(city: string, lang: string = "pt") {
     { name: `${city} ${suffixEast}`, lat: lat + 0.03, lon: lon + 0.09, temp: Math.round(currentTemp * 10) / 10, icon: conditionIcon },
     { name: `${city} ${suffixWest}`, lat: lat - 0.05, lon: lon - 0.08, temp: Math.round((currentTemp - 2) * 10) / 10, icon: conditionIcon },
   ];
-  
+
   return {
     isMock: true,
     current: {
@@ -190,22 +190,22 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const city = searchParams.get("q");
   const lang = (searchParams.get("lang") || "pt").toLowerCase();
-  
+
   if (!city) {
     return NextResponse.json(
       { error: "Cidade não fornecida." },
       { status: 400 }
     );
   }
-  
+
   const apiKey = process.env.OPENWEATHER_API_KEY;
-  
+
   // Se não houver API Key, usa o modo Mock de forma automática e segura
   if (!apiKey || apiKey.trim() === "" || apiKey === "sua_chave_aqui") {
     const mockData = generateMockData(city, lang);
     return NextResponse.json(mockData);
   }
-  
+
   try {
     const apiLang = lang === "en" ? "en" : "pt_br";
     // 1. Buscar clima atual
@@ -215,7 +215,7 @@ export async function GET(request: NextRequest) {
       )}&appid=${apiKey}&units=metric&lang=${apiLang}`,
       { next: { revalidate: 600 } } // Cache por 10 minutos
     );
-    
+
     if (!currentRes.ok) {
       if (currentRes.status === 401 || currentRes.status === 404) {
         // Se a chave for inválida ou a cidade não for encontrada, retorna erro descritivo
@@ -226,9 +226,9 @@ export async function GET(request: NextRequest) {
       }
       throw new Error("Erro na API do OpenWeatherMap");
     }
-    
+
     const currentData = await currentRes.json();
-    
+
     // 2. Buscar previsão (forecast 5 dias)
     const forecastRes = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(
@@ -236,12 +236,12 @@ export async function GET(request: NextRequest) {
       )}&appid=${apiKey}&units=metric&lang=${apiLang}`,
       { next: { revalidate: 1800 } } // Cache por 30 minutos
     );
-    
+
     let forecastData;
     if (forecastRes.ok) {
       forecastData = await forecastRes.json();
     }
-    
+
     // Processar e mapear ícones para o nosso padrão simplificado
     const mapIcon = (id: number): string => {
       if (id >= 200 && id < 300) return "stormy";
@@ -251,7 +251,7 @@ export async function GET(request: NextRequest) {
       if (id > 800 && id < 804) return "cloudy";
       return "cloudy"; // nublado severo ou atmosfera
     };
-    
+
     // Mapear previsão horária (pegar os primeiros 8 blocos de 3h do forecast para cobrir ~24 horas)
     const hourly = [];
     if (forecastData && forecastData.list) {
@@ -260,7 +260,7 @@ export async function GET(request: NextRequest) {
         const item = list[i];
         const dateObj = new Date(item.dt * 1000);
         const timeStr = `${dateObj.getHours().toString().padStart(2, "0")}:00`;
-        
+
         hourly.push({
           time: timeStr,
           temp: Math.round(item.main.temp * 10) / 10,
@@ -272,7 +272,7 @@ export async function GET(request: NextRequest) {
       // Fallback de horários caso falhe a segunda rota
       hourly.push({ time: "Agora", temp: Math.round(currentData.main.temp), pop: 10, icon: mapIcon(currentData.weather[0].id) });
     }
-    
+
     // Mapear previsão diária (agrupar dados do forecast por dia)
     const daily: any[] = [];
     if (forecastData && forecastData.list) {
@@ -280,12 +280,12 @@ export async function GET(request: NextRequest) {
       const daysOfWeekPT = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
       const daysOfWeekEN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const daysOfWeek = lang === "en" ? daysOfWeekEN : daysOfWeekPT;
-      
+
       forecastData.list.forEach((item: any) => {
         const dateObj = new Date(item.dt * 1000);
         const dayName = daysOfWeek[dateObj.getDay()];
         const dateStr = `${dateObj.getDate().toString().padStart(2, "0")}/${(dateObj.getMonth() + 1).toString().padStart(2, "0")}`;
-        
+
         if (!dayMap[dayName]) {
           dayMap[dayName] = {
             day: dayName,
@@ -300,7 +300,7 @@ export async function GET(request: NextRequest) {
           dayMap[dayName].iconIds.push(item.weather[0].id);
         }
       });
-      
+
       // Converter objeto de volta em array e pegar 7 dias (ou o que houver, geralmente 5-6 dias no forecast gratuito)
       Object.keys(dayMap).forEach((key) => {
         const dayInfo = dayMap[key];
@@ -310,7 +310,7 @@ export async function GET(request: NextRequest) {
             dayInfo.iconIds.filter((v: any) => v === a).length -
             dayInfo.iconIds.filter((v: any) => v === b).length
         ).pop();
-        
+
         daily.push({
           day: dayInfo.day,
           date: dayInfo.date,
@@ -320,7 +320,7 @@ export async function GET(request: NextRequest) {
         });
       });
     }
-    
+
     // Determinar fase da lua aproximada baseada na data
     const getMoonPhase = () => {
       const phasesPT = ["Nova", "Crescente", "Cheia", "Minguante"];
@@ -329,11 +329,11 @@ export async function GET(request: NextRequest) {
       const day = new Date().getDate();
       return phases[Math.floor((day % 30) / 7.5) % 4];
     };
-    
+
     // Gerar alertas meteorológicos simulados inteligentes com base no vento e chuva reais
     let alert = "";
     if (currentData.wind.speed > 10) {
-      alert = lang === "en" 
+      alert = lang === "en"
         ? `Warning of strong winds up to ${Math.round(currentData.wind.speed * 3.6)} km/h in the region.`
         : `Aviso de ventos fortes de até ${Math.round(currentData.wind.speed * 3.6)} km/h na região.`;
     } else if (currentData.weather[0].id >= 200 && currentData.weather[0].id < 600) {
@@ -341,7 +341,7 @@ export async function GET(request: NextRequest) {
         ? "Forecast of continuous precipitation in the coming hours. Drive carefully."
         : "Previsão de precipitação contínua nas próximas horas. Cuidado ao dirigir.";
     }
-    
+
     // Cidades vizinhas
     const lat = currentData.coord.lat;
     const lon = currentData.coord.lon;
@@ -357,7 +357,7 @@ export async function GET(request: NextRequest) {
       { name: `${currentData.name} ${suffixEast}`, lat: lat + 0.03, lon: lon + 0.09, temp: Math.round(currentTemp * 10) / 10, icon: currentIcon },
       { name: `${currentData.name} ${suffixWest}`, lat: lat - 0.05, lon: lon - 0.08, temp: Math.round((currentTemp - 2) * 10) / 10, icon: currentIcon },
     ];
-    
+
     const formattedData = {
       isMock: false,
       current: {
@@ -386,7 +386,7 @@ export async function GET(request: NextRequest) {
       },
       neighboringCities,
     };
-    
+
     return NextResponse.json(formattedData);
   } catch (error) {
     console.error("Erro ao buscar dados climáticos:", error);

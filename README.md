@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌦️ Clima Agora – Weather Dashboard
 
-## Getting Started
+[![Deploy na Vercel](https://vercel.com/button)](https://wheather-0-2.vercel.app/)
 
-First, run the development server:
+Aplicação de previsão do tempo desenvolvida com **Next.js** e hospedada na **Vercel**, que consome dados da API do OpenWeatherMap.  
+O projeto exibe informações meteorológicas em tempo real, além de simulações gráficas e interativas para cidades vizinhas.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Clima Atual**: temperatura, sensação térmica, umidade, vento, pressão, visibilidade e fase da lua.  
+- **Previsão Horária**: gráfico com variação de temperatura e probabilidade de chuva.  
+- **Previsão Diária**: comparativo de temperaturas mínimas e máximas para os próximos dias.  
+- **Radar Interativo**: mapa com cidades vizinhas e suas condições climáticas.  
+- **Alertas Meteorológicos**: avisos de chuva, ventos fortes ou tempestades.  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📸 Demonstração
 
-To learn more about Next.js, take a look at the following resources:
+### Clima Atual
+![Clima Atual](attachments/ZumdXbdT824hGyxUMVpLs.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Gráficos de Previsão
+![Gráficos de Previsão](attachments/hir3X4QaJwkNS2ALpwtAQ.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Radar Interativo
+![Radar Interativo](attachments/KLGNJew6yszPJNBBbTvM1.png)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Tecnologias Utilizadas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js](https://nextjs.org/) – Framework React para aplicações web.  
+- [TypeScript](https://www.typescriptlang.org/) – Tipagem estática para maior segurança no código.  
+- [OpenWeatherMap API](https://openweathermap.org/api) – Fonte de dados meteorológicos.  
+- [Vercel](https://vercel.com/) – Hospedagem e deploy contínuo.  
+
+---
+
+## ⚙️ Configuração
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Anthony-Albuquerque405/wheather-0-2.git
+   cd wheather-0-2
+
+---
+
+## 🌐 Deploy
+
+O projeto está disponível em produção:  
+👉 [Clima Agora – Vercel](https://wheather-0-2.vercel.app/)
+
+---
+
+## 📌 Autor
+
+Desenvolvido por **Anthony Albuquerque**.  
+Se gostou do projeto, deixe uma ⭐ no repositório!
