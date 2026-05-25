@@ -20,13 +20,16 @@ O projeto exibe informações meteorológicas em tempo real, além de simulaçõ
 ## 📸 Demonstração
 
 ### Clima Atual
-![alt text](image.png)
+![alt text](clima-atual.png)
 
 ### Gráficos de Previsão
-![alt text](image-1.png)
+![alt text](graficos-previsao.png)
 
 ### Radar Interativo
-![alt text](image-2.png)
+![alt text](radar-interativo.png)
+
+<video src="Video-demostrativo.mp4" controls></video>
+
 ---
 
 ## 🛠️ Tecnologias Utilizadas
@@ -51,6 +54,8 @@ O projeto exibe informações meteorológicas em tempo real, além de simulaçõ
 
 O projeto está disponível em produção:  
 👉 [Clima Agora – Vercel](https://wheather-0-2.vercel.app/)
+
+
 
 ---
 
