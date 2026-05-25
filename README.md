@@ -20,13 +20,13 @@ O projeto exibe informações meteorológicas em tempo real, além de simulaçõ
 ## 📸 Demonstração
 
 ### Clima Atual
-![Clima Atual](attachments/ZumdXbdT824hGyxUMVpLs.png)
+![alt text](image.png)
 
 ### Gráficos de Previsão
-![Gráficos de Previsão](attachments/hir3X4QaJwkNS2ALpwtAQ.png)
+![alt text](image-1.png)
 
 ### Radar Interativo
-![Radar Interativo](attachments/KLGNJew6yszPJNBBbTvM1.png)
+<video controls src="20260525-0226-00.0811964.mp4" title="Title"></video>
 
 ---
 
