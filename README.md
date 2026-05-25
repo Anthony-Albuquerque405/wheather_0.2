@@ -26,8 +26,7 @@ O projeto exibe informações meteorológicas em tempo real, além de simulaçõ
 ![alt text](image-1.png)
 
 ### Radar Interativo
-<video controls src="20260525-0226-00.0811964.mp4" title="Title"></video>
-
+![alt text](image-2.png)
 ---
 
 ## 🛠️ Tecnologias Utilizadas
@@ -59,3 +58,6 @@ O projeto está disponível em produção:
 
 Desenvolvido por **Anthony Albuquerque**.  
 Se gostou do projeto, deixe uma ⭐ no repositório!
+
+
+[def]: 0260525-0226-00.0811964.mp
