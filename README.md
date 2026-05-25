@@ -23,12 +23,12 @@ O projeto exibe informações meteorológicas em tempo real, além de simulaçõ
 ![alt text](clima-atual.png)
 
 ### Gráficos de Previsão
-![alt text](graficos-previsao.png)
+![alt text](grafico-previsao.png)
 
 ### Radar Interativo
-![alt text](radar-interativo.png)
+![alt text](rada-interativo.png)
 
-<video src="Video-demostrativo.mp4" controls></video>
+<video src="Video-demostrativo.mp4" controls alt="Vídeo demonstrativo" width="720"></video>
 
 ---
 
