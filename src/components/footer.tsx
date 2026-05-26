@@ -9,8 +9,8 @@ export function Footer() {
 
   const toggleNotifications = () => {
     setNotificationsActive(!notificationsActive);
-    const alertMsg = !notificationsActive 
-      ? "Notificações ativadas! Você receberá alertas climáticos severos." 
+    const alertMsg = !notificationsActive
+      ? "Notificações ativadas! Você receberá alertas climáticos severos."
       : "Notificações desativadas.";
     alert(alertMsg);
   };
@@ -22,10 +22,10 @@ export function Footer() {
 
   return (
     <footer className="mt-auto border-t border-white/10 dark:border-white/10 bg-slate-100 dark:bg-slate-950 text-slate-500 dark:text-white/60 transition-colors duration-300">
-      
+
       {/* Container Principal */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-        
+
         {/* Lado Esquerdo: Info Geral e PWA */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
@@ -49,11 +49,10 @@ export function Footer() {
 
             <button
               onClick={toggleNotifications}
-              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-xl border text-xs font-semibold transition-all ${
-                notificationsActive 
-                  ? "bg-emerald-600/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/25" 
-                  : "bg-slate-200/50 dark:bg-white/5 text-slate-600 dark:text-white/80 border-slate-300 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10"
-              }`}
+              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-xl border text-xs font-semibold transition-all ${notificationsActive
+                ? "bg-emerald-600/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/25"
+                : "bg-slate-200/50 dark:bg-white/5 text-slate-600 dark:text-white/80 border-slate-300 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10"
+                }`}
             >
               {notificationsActive ? <Bell size={14} /> : <BellOff size={14} />}
               <span>{notificationsActive ? "Alertas Ativos" : "Ativar Alertas"}</span>

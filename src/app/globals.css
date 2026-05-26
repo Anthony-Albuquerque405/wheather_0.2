@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* Removed invalid @custom-variant rule; Tailwind handles dark mode via built-in dark variant */
 
 :root {
   --background: #f0f4f8;
